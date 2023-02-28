@@ -1,0 +1,98 @@
+from csv import reader
+import re
+def valider_numero(numero):
+    #verifier que le numero a une taille 7 caractères
+    if len(numero) != 7:
+        return False
+    #verifier que le numero contient seulement des chiffres  et- des lettres
+    if not numero.isalnum():
+        return False
+    else:
+        return True
+#fonctiojn pour valider le nom et le prenom de l'élève
+def valider_nom_prenom(nom_prenom):
+    #verifierv que le nom ou le prenom commence par une lettre
+    if not nom_prenom[0].isalpha():
+      return False
+    #verifier que le nom ou le prenom contient au moins 2 ou 3 lettres respectivement
+    if len(nom_prenom) < 2 or len(nom_prenom) < 3 :
+        return False
+    else:
+        return True
+#fonction pour valider la date de naissance l'élève
+def valider_date_de_naissance(date_naissance):
+    #verifier que la date est au format JJ/MM/AAAA
+    try:
+        jour, mois, annee=date_naissance.split('/')
+        jour, mois, annee = int(jour), int(mois), int(annee)
+    except ValueError:
+        return False
+    #verifier que la date est valide(par exemple,pas de 30fevrier)
+    if jour < 1 or jour > 31 or mois < 1 or mois > 12 or annee < 1900 or annee >2099:
+        return False
+    else:
+        return True
+#fonction pour valider la classe de l'éléève
+def valider_classe(classe):
+    #remplacer les espace et les ieme,ème,ième,iem etc  par eme
+  classe = classe.replace(' ','')
+  #verifions les classe valides
+  if classe  not in ['6emeA', '6emeB', '5emeA','5emeB', '4emeA', '4emeB','3emeA','3emeB']:
+              return False
+  else:
+                return True
+#fonction pour valider les notes de l'élève
+def valider_notes(notes):
+    #verifier que chaque note est format[devoir1|devoir2:examen]
+    for note in notes.split('#'):
+        if not re.match(r'^[A-Za-z]+\[\d+\|\d+:\d+\]$', note):
+            return False
+    else:
+        return True
+#fonction calcul moyenne de l'élève
+def calcul_moyenne(notes):
+    #moyenne_general=0
+    somme=0.0
+    for note in notes.split('#'):
+        matiere,notes_devoirs,note_examen=re.match(r'^([A-Za-z]+)\[(\d+)\|(\d+):(\d+)\]$', note).group()
+        for i in range(len(notes_devoirs)):
+          somme += notes_devoirs[i]
+          moyenne = somme / len(notes_devoirs)
+        moyenne_general+= (moyenne+2*float(note_examen))/3
+        return notes_devoirs, note_examen, moyenne_general 
+#lire les donnees depuis le fichier csv
+fichier='/home/faye/Documents/Donnees_Projet_Python_DataC5.csv'
+def ouvrir(fichier):
+  tab_valide=[]
+  tab_invalide=[]
+  with open(fichier,'r') as monlecteur:
+     monlecteur_csv =reader(monlecteur,delimiter = ',')
+     donnees=[ligne for ligne in monlecteur_csv]
+     for i in monlecteur_csv:
+     #print(donnees)
+       if valider_numero == True and valider_nom_prenom == True and valider_date_de_naissance == True and  valider_notes == True and valider_classe == True:
+         tab_valide.append(i)
+         return tab_valide
+       else:
+           tab_invalide.append(i)
+
+tab_valide=ouvrir(fichier)
+print(tab_valide)
+       
+#Aficher le menu
+while True:
+ choix_1 = int(input('donner 2 pour afficher les donnees valides'))
+ choix_2 = int(input('donner 1 pour afficher les donnees invalides'))
+
+
+        
+            
+    
+    
+     
+        
+                                               
+                                              
+        
+              
+                                          
