@@ -9,7 +9,7 @@ def valider_numero(numero):
     if not numero.isalnum():
         return False
     else:
-        return True
+     return True
 #fonctiojn pour valider le nom et le prenom de l'élève
 def valider_nom_prenom(nom_prenom):
     #verifierv que le nom ou le prenom commence par une lettre
@@ -52,7 +52,7 @@ def valider_notes(notes):
         return True
 #fonction calcul moyenne de l'élève
 def calcul_moyenne(notes):
-    #moyenne_general=0
+    moyenne_general=0
     somme=0.0
     for note in notes.split('#'):
         matieres,notes_devoirs,note_examen = re.match(r'^([A-Za-z]+)\[(\d+)\|(\d+):(\d+)\]$', note).group()
@@ -60,103 +60,103 @@ def calcul_moyenne(notes):
         for i in range(len(notes_devoirs)):
           somme += notes_devoirs[i]
           moyenne = somme / len(notes_devoirs)
-        moyenne_general+= (moyenne+2*float(note_examen))/3
-        return notes_devoirs, note_examen, moyenne_general 
+    moyenne_general+= (moyenne+2*float(note_examen))/3
+    return notes_devoirs, note_examen, moyenne_general 
 #lire les donnees depuis le fichier csv
 #fichier='/home/faye/Documents/Donnees_Projet_Python_DataC5.csv'
 #fichier='/home/faye/Documents/Donnees_Projet_Python_DataC5.csv'
 #def ouvrir(fichier):
 #definition des expression regulier pour verification
 # def menu(choix):
-#     while True:
-#         choix = input('que voulais-vous afficher ?(1: donnees valides, 2: donnees invalides, 3: quitter)') 
-#tableau pour les donnéés valides et invalides 
-#fichier=
-tab_valide=[]
-tab_invalide=[]
-def ouvrir(fichier):
-    NUMERO_REGEX = r'^[A-Z0-9]{7}$'
-    NOM_REGEX = r'^[a-zA-Z]{2,}$'
-    PRENOM_REGEX = r'^[a-zA-Z]{3,}$'
-    DATE_REGEX = r'^\d{2}/\d{2}/\d{4}$'
-    CLASSE_REGEX = r'^[3456]eme?[A-B]$'
-    NOTE_REGEX = r'^\d{1,2}(\|\d{1,2}:\d{2})?$'
-   
-#ouverture du fichier contenant les donnees des eleves 
-    with open('/home/faye/Documents/Donnees_Projet_Python_DataC5.csv', 'r') as monlecteur:
-     monlecteur_csv = reader(monlecteur,delimiter = ',')
-    # for i in monlecteur_csv:
-    #     print(i)
-     
-     #lecture des ligne
-     for i in monlecteur_csv:
-     #supression d'espace en debut et fin de ligne
-      #line=line.strip()
-     #separation des donnees de la ligne
-      #monlecteur_csv=line.split(',')
-     #verification validité des donnees 
-      numero_valide = bool(re.match(NUMERO_REGEX, i[1]))
-      nom_valide = bool(re.match(NOM_REGEX, i[2]))
-      prenom_valide = bool(re.match(PRENOM_REGEX, i[3]))
-      date_valide = bool(re.match(DATE_REGEX, i[4]))
-      classe_valide = bool(re.match(CLASSE_REGEX, i[5]))
-     #verification de validiter des notes
-      notes_valides = True
-      moyenne=0.0
-      #somme = 0.0
-      for note in i[6:]:
-            note.split('#'):
-            note_valide = bool(re.match(NOTE_REGEX, note))
-            if not note_valide:
-             notes_valides = False
-             break
-            else:
-             note_devoir, note_examen = note.split('|') if '|' in note else(note, '0')
-             note_devoir = float(note_devoir)
-             note_examen = float(note_examen.split(':')[0])
-             moyenne += (note_devoir+ 2 * note_examen) / 3
-#si toutes les donnees sont valides on ajoute la ligne avec la moyenne au tableau des donnees valides
-      if valider_numero== True and valider_nom_prenom == True and valider_date_de_naissance == True and valider_classe == True and valider_notes == True:
-        classe=monlecteur_csv[5].replace('eme ', 'eme').replace('ieme ','eme')
-     #print(i)
-    tab_valide.append({'code': i[0],
-                        'numero': i[1],
-                        'nom': i[2],
-                        'prenom': i[3],
-                        'date_de_naissance':i[4],
-                        'classe': i[5],
-                        'notes': i[6:],
-                        'moyenne': moyenne/len(i[6:])
-                        })
     
-print(tab_valide)
+# #tableau pour les donnéés valides et invalides 
+#fichier=
+# tab_valide=[]
+# tab_invalide=[]
+# def ouvrir(fichier):
+#     NUMERO_REGEX = r'^[A-Z0-9]{7}$'
+#     NOM_REGEX = r'^[a-zA-Z]{2,}$'
+#     PRENOM_REGEX = r'^[a-zA-Z]{3,}$'
+#     DATE_REGEX = r'^\d{2}/\d{2}/\d{4}$'
+#     CLASSE_REGEX = r'^[3456]eme?[A-B]$'
+#     NOTE_REGEX = r'^\d{1,2}(\|\d{1,2}:\d{2})?$'
+   
+# #ouverture du fichier contenant les donnees des eleves 
+#     with open('/home/faye/Documents/Donnees_Projet_Python_DataC5.csv', 'r') as monlecteur:
+#      monlecteur_csv = reader(monlecteur,delimiter = ',')
+#     # for i in monlecteur_csv:
+#     #     print(i)
+     
+#      #lecture des ligne
+#      for i in monlecteur_csv:
+#      #supression d'espace en debut et fin de ligne
+#       #line=line.strip()
+#      #separation des donnees de la ligne
+#       #monlecteur_csv=line.split(',')
+#      #verification validité des donnees 
+#       numero_valide = bool(re.match(NUMERO_REGEX, i[1]))
+#       nom_valide = bool(re.match(NOM_REGEX, i[2]))
+#       prenom_valide = bool(re.match(PRENOM_REGEX, i[3]))
+#       date_valide = bool(re.match(DATE_REGEX, i[4]))
+#       classe_valide = bool(re.match(CLASSE_REGEX, i[5]))
+#      #verification de validiter des notes
+#       notes_valides = True
+#       moyenne=0.0
+#       #somme = 0.0
+#       for note in i[6:]:
+#             note.split('#')
+#             note_valide = bool(re.match(NOTE_REGEX, note))
+#             if not note_valide:
+#              notes_valides = False
+#              break
+#             else:
+#              note_devoir, note_examen = note.split('|') if '|' in note else(note, '0')
+#              note_devoir = float(note_devoir)
+#              note_examen = float(note_examen.split(':')[0])
+#              moyenne += (note_devoir+ 2 * note_examen) / 3
+# #si toutes les donnees sont valides on ajoute la ligne avec la moyenne au tableau des donnees valides
+#       if valider_numero== True and valider_nom_prenom == True and valider_date_de_naissance == True and valider_classe == True and valider_notes == True:
+#         classe=monlecteur_csv[5].replace('eme ', 'eme').replace('ieme ','eme')
+#      #print(i)
+#     tab_valide.append({'code': i[0],
+#                         'numero': i[1],
+#                         'nom': i[2],
+#                         'prenom': i[3],
+#                         'date_de_naissance':i[4],
+#                         'classe': i[5],
+#                         'notes': i[6:],
+#                         'moyenne': moyenne/len(i[6:])
+#                         })
+    
+#print(tab_valide)
     #   else:
     #      tab_invalide.append(i)
     #      print(tab_invalide)
 
 #menu pour affichage des donnees 
+fichier='/home/faye/Documents/Donnees_Projet_Python_DataC5.csv'
+def ouvrir(fichier):
+    tab_valide=[]
+    tab_invalide=[]
+    with open(fichier,'r') as monlecteur:
+        monlecteur_csv = reader(monlecteur,delimiter = ',')
+        #donnees=[ligne for ligne in monlecteur_csv]
+        for i in monlecteur_csv:
+            #print(donnees)
+            if valider_numero == True and valider_nom_prenom == True and valider_date_de_naissance == True and  valider_notes == True and valider_classe == True:
+                tab_valide.append(i)
+            else:
+                tab_invalide.append(i)
+    return tab_valide, tab_invalide
 
-# def ouvrir(fichier):
-#   tab_valide=[]
-#   tab_invalide=[]
-#   with open(fichier,'r') as monlecteur:
-#      monlecteur_csv =reader(monlecteur,delimiter = ',')
-#      donnees=[ligne for ligne in monlecteur_csv]
-#      for i in monlecteur_csv:
-#      #print(donnees)
-#        if valider_numero == True and valider_nom_prenom == True and valider_date_de_naissance == True and  valider_notes == True and valider_classe == True:
-#          tab_valide.append(i)
-#          return tab_valide
-#        else:
-#            tab_invalide.append(i)
 
-ouvrir(tab_valide)
+valide, invalide = valider_notes(fichier)
+print(invalide)
+
        
 #Aficher le menu
 # while True:
-#  choix_1 = int(input('donner 2 pour afficher les donnees valides'))
-#  choix_2 = int(input('donner 1 pour afficher les donnees invalides'))
-
+#         choix = input('que voulais-vous afficher ?(1: donnees valides, 2: donnees invalides, 3: quitter)') 
 
         
             
