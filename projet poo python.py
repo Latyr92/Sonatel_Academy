@@ -1,6 +1,7 @@
 from csv import reader
+import csv
 
-class Eleve():
+class Eleve:
     def _init_(self, code, numero, nom, prenom, date_naissance, classe, notes):
         self.code = code
         self.numero = numero
@@ -13,7 +14,7 @@ class Eleve():
         self.examen = "a determiner"
         self.moyenne_devoir = "a determiner"
         self.moyenne_generale = "a determiner"
-    notes='Math[14|13:05] #Francais[18|16:14] #Anglais[15|06:17] #PC[14|13:07] #SVT[18|12:16] #HG[13|15:13' 
+    #notes='Math[14|13:05] #Francais[18|16:14] #Anglais[15|06:17] #PC[14|13:07] #SVT[18|12:16] #HG[13|15:13' 
     def est_valide(self):
         # Vérification de la validité de chaque attribut de l'objet Eleve
         if not isinstance(self.numero, str) or not self.numero.isalnum() or len(self.numero) != 7:
@@ -62,40 +63,65 @@ class Eleve():
 
 
 
-class GestionEleves:
+#class GestionEleves:
     
-    def _init_(self):
-        fichier= "/home/faye/sonatel_academy/Donnees_Projet_Python_datac5.csv" 
-        self.fichier = fichier
-        self.eleves_valides = ["A","B","C"]
-        self.eleves_invalides = []
+    # def _init_(self):
+    #     fichier = "/home/faye/Sonatel_Academy/donnée_projet.csv" 
+    #     self.fichier = fichier
+    #     self.eleves_valides = []
+    #     self.eleves_invalides = []
 
     def afficher_eleves_valides(self):
-        for eleve in self.eleves_valides:
-            print(f"Numéro: {eleve.numero}, Nom: {eleve.nom}, Prénom: {eleve.prenom}, date_de_naissance: {eleve.date_denaissance}, classe: {eleve.classe}, note: {eleve.notes}")
+        print(f"{self.numero} - {self.nom} {self.prenom} ({self.date_naissance}) {self.classe} {self.notes}:")
+            #print(f"(Numéro: {eleve.numero}, Nom: {eleve.nom}, Prénom: {eleve.prenom}, date_de_naissance: {eleve.date_denaissance}, classe: {eleve.classe}, note: {eleve.notes}:")
     
+fichier = "/home/faye/Sonatel_Academy/donnée_projet.csv" 
+def lire_fichier(self):
+        #fichier = "/home/faye/Sonatel_Academy/donnée_projet.csv" 
+    eleves_valides = []
+    eleves_invalides = []
+    with open(fichier, newline='') as fichier_csv:
+        lecteur_csv = csv.reader(fichier_csv, delimiter=',')
+        for ligne in lecteur_csv:
+            code = ligne[0]
+            numero = ligne[1]
+            nom= ligne[2]
+            prenom = ligne[3]
+            date_naissance = ligne[4]
+            classe = ligne[5]
+            notes = ligne[6]
+        # if Eleve.est_valide:
+            eleve = Eleve(code, numero, nom, prenom, date_naissance, classe, notes)
+            eleves_valides.append(eleve)
 
-    def lire_fichier(self):
+                #print(self.eleves_valides)
+        # else:
+        #         eleves_invalides.append(eleve)
+    return eleves_valides
        
-        with open(self.fichier, 'r') as f:
-            reader = reader(f)
+        # with open(fichier, newline='') as f:
+        #     reader = reader(f)
 
-            for row in reader:
-                eleve = Eleve(row[0], row[1], row[2], row[3], row[4], row[5], row[6])
-                if eleve.est_valide():
-                    self.eleves_valides.append(eleve)
+        #     for row in reader:
+        #         eleve = Eleve(row[0], row[1], row[2], row[3], row[4], row[5], row[6])
+            #     if eleve.est_valide:
+            #         self.eleves_valides.append(eleve)
 
-                    #print(self.eleves_valides)
-                else:
-                    self.eleves_invalides.append(row)
-        return self.eleves_valides,self.eleves_invalides
+            #         #print(self.eleves_valides)
+            #     else:
+            #         self.eleves_invalides.append(row)
+            # return self.eleves_valides,self.eleves_invalides
 
                   
     
 #ligne_eleve= Eleve
-v=GestionEleves()
-a = v.lire_fichier()
-print(a)
+if __name__ == "__main__":
+    #etudiants = lire_fichier("etudiants.csv")
+    eleves_valides = lire_fichier("eleves.csv")
+    for eleve  in eleves_valides:
+        eleves_valides.afficher_eleves_valides()
+# v.afficher_eleves_valides
+#print(a)
 #self_eleve_= lire_fichier()
 # ligne_eleve._init_()
 # ligne_eleve.lire_fichier()
