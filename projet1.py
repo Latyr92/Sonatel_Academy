@@ -1,25 +1,30 @@
 import re, csv
 from MyFonctions import *
+notes="SVT[12|20:19] #PC[13|14:10] #Francais[14|18:19] #SVT[16|19:14] #Anglais[14|15:18] #HG[10|07:20]"
 def Calcul_moyenne(notes):
     moyenne = 0.0
     for note in notes.split("#"):
-        matiere, note_devoir, note_examen = re.match(r"^([A-Za-z]+)\[(\d+)\|(\d+):(\d+)\]$", note).group()
-        moyenne += (float(note_devoir) + 2*float(note_examen))
-        return note_devoir, note_examen, moyenne
+        # matiere, note_devoir, note_examen = re.match(r"^([A-Za-z]+)\[(\d+)\|(\d+):(\d+)\]$", note).group()
+        # moyenne += (float(note_devoir) + 2*float(note_examen)) / 3
+        # return note_devoir, note_examen, moyenne
+        print(notes)
 fichier="/home/faye/Sonatel_Academy/Donnees_Projet_Python_DataC5.csv"
 #Afficher les donnees depuis le fichier csv
 with open(fichier, 'r') as monlecteur:
     monlecteur_csv = csv.reader(monlecteur, delimiter= ",")
-    fichier=[ligne for ligne in monlecteur_csv]
+    fichier = [ligne for ligne in monlecteur_csv]
     print(fichier)
+    #print(fichier)
+Calcul_moyenne(fichier)
+
 
 # def valider_notes(note):
 #     note= note.split("#")
 #     #verifier que chaque note est format[devoir1|devoir2:examen]
-#     # for i in note.split('#'):
-#     #     if not re.match(r'^[A-Za-z]+\[\d+\|\d+:\d+\]$', note):
-#     #         return False
-#     return note
+#     for i in note.split('#'):
+#         if not re.match(r'^[A-Za-z]+\[\d+\|\d+:\d+\]$', note):
+#             return False
+#     return  
 
 # # Définition des expressions régulières pour les vérifications des
 # NUMERO_REGEX = r'^[A-Z0-9]{7}$'
