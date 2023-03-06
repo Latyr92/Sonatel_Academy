@@ -1,10 +1,11 @@
 import csv
 import re
-fichier="/home/faye/Sonatel_Academy/Donnees_Projet_Python_DataC5.csv"
+fichier= "/home/faye/Sonatel_Academy/donnée_projet.csv" 
 #Afficher les donnees depuis le fichier csv
 with open(fichier, 'r') as monlecteur:
     monlecteur_csv = csv.reader(monlecteur, delimiter= ",")
-    fichier=[ligne for ligne in monlecteur_csv]
+    #for ligne in monlecteur_csv:
+        #print(ligne)
     def valider_numero(numero):
         #verifier que le numero a une taille 7 caractères
         if len(numero) != 7:
@@ -17,50 +18,95 @@ with open(fichier, 'r') as monlecteur:
 #fonctiojn pour valider le nom et le prenom de l'élève
     def valider_nom(nom):
     #verifierv que le nom ou le prenom commence par une lettre
-        if not nom[0].isalpha():
-            return False
-        #verifier que le nom ou le prenom contient au moins 2 ou 3 lettres respectivement
-        if len(nom) < 2 :
-            return False
+        if nom != "":
+            if not nom[0].isalpha():
+                return False
+            #verifier que le nom ou le prenom contient au moins 2 ou 3 lettres respectivement
+            if len(nom) < 2 :
+                return False
+            else:
+                return True
         else:
-            return True
+            return False
     def valider_prenom(prenom):
-        if not prenom[0].isalpha():
-            return False
-        if not len(prenom) < 3:
-            return False
+        if prenom != "":
+            if not prenom[0].isalpha(): 
+                return False
+            if not len(prenom) < 3:
+                return False
+            else:
+                return True
+
         else:
-            return True 
+            return False 
     #fonction pour valider la date de naissance l'élève
     def valider_date_de_naissance(date_naissance):
-        #verifier que la date est au format JJ/MM/AAAA
         try:
             jour, mois, annee = date_naissance.split('/')
             jour, mois, annee = int(jour), int(mois), int(annee)
+            #return True
         except ValueError:
             return False
-        #verifier que la date est valide(par exemple,pas de 30fevrier)
-        if jour < 1 or jour > 31 or mois < 1 or mois > 12 or annee < 1900 or annee >2099:
-            return False
-        else:
-            return True
+        return True
+    # Vérifier que la date est valide (par exemple, pas de 30 février)
+        # if jour < 1 or jour > 31 or mois < 1 or mois > 12 or annee < 1900 or annee > 2099:
+        #     return False
+        # else:
+        #     return True
+
+
+        #verifier que la date est au format JJ/MM/AAAA
+        # try:
+        #     jour, mois, annee = date_naissance.split('/')
+        #     jour, mois, annee = int(jour), int(mois), int(annee)
+        # except ValueError:
+        #     return False
+        # #verifier que la date est valide(par exemple,pas de 30fevrier)
+        # if jour < 1 or jour > 31 or mois < 1 or mois > 12 or annee < 1900 or annee >2099:
+        #     return False
+        # else:
+        #     return True
     #fonction pour valider la classe de l'éléève
     def valider_classe(classe):
+        if classe != "":
         #remplacer les espace et les ieme,ème,ième,iem etc  par eme
-        classe = classe.replace(' ','')
+            classe = classe.replace(' ','')
     #verifions les classe valides
-        if classe[0] in ["3","4","5","6"] and classe[-1] in ["A","B"]:
-            classe = classe[0]+"eme"+classe[-1]
-            return classe,True
+            if classe[0] in ["3","4","5","6"] and classe[-1] in ["A","B"]:
+                classe = classe[0]+"eme"+classe[-1]
+                return classe,True
+            else:
+                return classe,False
         else:
-            return classe,False
+            return False
     #fonction pour valider note
     def valide_notes(notes):
-    #verifier que le chaque notes est au forme matier[devoir1|devoir2 : examen]
-        for note in notes.splite("#"):
-            if not re.match(r'^[A-Za-z]+\[\d+\|\d+:\d+\]$', note):
+        devoirs=[]
+        examen=[]
+        for note in notes.split('#'):
+            if len(note.split('|')) != 2 or ':' not in note.split('|')[1]:
                 return False
-        return True
+            for n in note.split('|'):
+                if not n.replace(':', '', 1).isdigit():
+                    return False
+        # Extraction des notes de devoir et de la note d'examen
+        for note in notes.split('#').split("["):
+            
+            devoirs.append(float(note.split('|')[0]))
+            if examen is None:
+                examen = float(note.split('|')[1].split(':')[1])
+            else:
+                examen += float(note.split('|')[1].split(':')[1])
+        # Calcul de la moyenne des devoirs et de la moyenne générale
+        moyenne_devoir = sum(devoirs) / len(devoirs)
+        moyenne_generale = (moyenne_devoir + 2 * examen) / 3
+        return devoirs,examen,moyenne_devoir,moyenne_generale,True
+    #verifier que le chaque notes est au forme matier[devoir1|devoir2 : examen]
+        # notes=notes.split("#")
+        # for note in notes:
+        #     if not re.match(r'^[A-Za-z]+\[\d+\|\d+:\d+\]$', notes):
+        #         return False
+        # return True
 
 
 # fichier="/home/faye/Sonatel_Academy/Donnees_Projet_Python_DataC5.csv"
@@ -69,8 +115,8 @@ with open(fichier, 'r') as monlecteur:
 #     monlecteur_csv = csv.reader(monlecteur, delimiter= ",")
 #     fichier=[ligne for ligne in monlecteur_csv]
     for ligne in monlecteur_csv:
-      f=valider_classe(ligne[5])
-      print(f)
+        f=valider_numero(ligne[1])
+        print(f)
  
 
 
