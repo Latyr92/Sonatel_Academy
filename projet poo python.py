@@ -67,13 +67,15 @@ class GestionEleves:
     def _init_(self):
         fichier= "/home/faye/sonatel_academy/Donnees_Projet_Python_datac5.csv" 
         self.fichier = fichier
-        self.eleves_valides = []
+        self.eleves_valides = ["A","B","C"]
         self.eleves_invalides = []
+
     def afficher_eleves_valides(self):
         for eleve in self.eleves_valides:
             print(f"Numéro: {eleve.numero}, Nom: {eleve.nom}, Prénom: {eleve.prenom}, date_de_naissance: {eleve.date_denaissance}, classe: {eleve.classe}, note: {eleve.notes}")
-  
-def lire_fichier(self):
+    
+
+    def lire_fichier(self):
        
         with open(self.fichier, 'r') as f:
             reader = reader(f)
@@ -92,7 +94,8 @@ def lire_fichier(self):
     
 #ligne_eleve= Eleve
 v=GestionEleves()
-v.afficher_eleves_valides()
+a = v.lire_fichier()
+print(a)
 #self_eleve_= lire_fichier()
 # ligne_eleve._init_()
 # ligne_eleve.lire_fichier()
