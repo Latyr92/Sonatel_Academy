@@ -1,7 +1,7 @@
 import json
 
 # Charger le fichier JSON
-with open('data.json', 'r') as f:
+with open('/home/faye/Sonatel_Academy/donnée_projet', 'r') as f:
     data = json.load(f)
 
 valid_data = []
@@ -16,7 +16,7 @@ for obj in data:
         invalid_data.append(obj)
 
 # Recycler les données valides dans un nouveau fichier JSON
-with open('/home/faye/Sonatel_Academy/donnée_projet.csv".json', 'w') as f:
+with open('valid_data.json', 'w') as f:
     json.dump(valid_data, f)
 
 # Recycler les données invalides dans un nouveau fichier JSON
