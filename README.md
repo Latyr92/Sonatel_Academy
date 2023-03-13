@@ -1,1 +1,0 @@
-# Sonatel_Academy
