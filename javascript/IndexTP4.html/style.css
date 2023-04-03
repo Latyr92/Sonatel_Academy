@@ -1,0 +1,55 @@
+body {
+                     font-family: Arial, sans-serif;
+                     margin: 0;
+                     padding: 0;
+                     background-color: #4b0082;
+                     border-style: outset;
+                   }
+                   
+                         .container {
+                           display: flex;
+                           flex-direction: column;
+                           align-items: center;
+                           margin-top: 50px;
+                         }
+                   
+                   h1 {
+                     margin-top: 0;
+                   }
+                   
+                   div {
+                     margin-bottom: 10px;
+                   }
+                   
+                   label {
+                     display: inline-block;
+                     width: 100px;
+                   
+                   }
+                   
+                   input[type="checkbox"] {
+                     margin-right: 5px;
+                   }
+                   
+                   button {
+                     margin-left: 10px;
+                     cursor: pointer;
+                   }
+                   
+                   #password {
+                     width: 300px;
+                   }
+                   
+                   #copy {
+                     margin-left: 10px;
+                     font-weight: bold;
+                     color: red;
+                   }
+                   #generate {
+                   background-color: rgb(234, 234, 7);
+                   color: #4b0082;
+                   padding: 10px;
+                   font-weight: bold;
+                   cursor: pointer;
+                   border-style: outset;
+                   }
