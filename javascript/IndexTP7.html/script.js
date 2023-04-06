@@ -3,6 +3,8 @@ const APIURL =
 const IMGPATH = "https://image.tmdb.org/t/p/w1280";
 const SEARCHAPI =
   "https://api.themoviedb.org/3/search/movie?&api_key=04c35731a5ee918f014970082a0088b1&query=";
+  const searchInput = document.getElementById("search-bar");
+  const searchBtn = document.getElementById("searchBtn");
 
 const moviesContainer = document.querySelector(".movies-container");
 const searchForm = document.querySelector(".search-container");
@@ -22,22 +24,25 @@ async function getMovies(url) {
 function showMovies(movies) {
   moviesContainer.innerHTML = "";
   movies.forEach((movie) => {
-    const { poster_path, title, overview } = movie;
+    const { poster_path, title, overview,vote_average } = movie;
     const movieElement = document.createElement("div");
     movieElement.classList.add("movie");
    
     movieElement.innerHTML = `
       <img src="${IMGPATH + poster_path}" alt="${title}">
       <h2 class="movie-title">${title}</h2>
+      <p class="description">${overview}</p>
+      <str class="vote">${vote_average}
+
     `;
 
-    movieElement.addEventListener("mouseover", () => {
-      showMovieDescription(overview);
-    });
-    
-    movieElement.addEventListener("mouseout", () => {
-      hideMovieDescription();
-    });
+    // movieElement.addEventListener("mouseover", () => {
+    //   showMovieDescription(overview);
+    // });
+
+    // movieElement.addEventListener("mouseout", () => {
+    //   hideMovieDescription();
+    // });
 
     moviesContainer.appendChild(movieElement);
   });
@@ -57,3 +62,14 @@ function hideMovieDescription() {
     descriptionElement.remove();
   }
 }
+searchInput.addEventListener("input", () => {
+  const searchText = searchInput.value.toLowerCase();
+  const searchUrl = SEARCHAPI + searchText;
+  getMovies(searchUrl);
+});
+
+
+
+
+
+  

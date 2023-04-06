@@ -2,9 +2,33 @@
   box-sizing: border-box;
   font-family: Arial, sans-serif;
 }
+.description {
+  background-color: rgba(0, 0, 0, 0.8);
+  color: green;
+  padding: 20px;
+  max-width: 500px;
+  font-size: 16px;
+  line-height: 1.5;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  display: none;
+}
+.movie:hover .description{
+  display: block;
+ 
+
+
+}
+.vote{
+  background-color: red;
+  color: white;
+  font-size: 30px;
+
+}
+
 
 .container {
-  max-width: 1200px;
+ 
   margin: 0 auto;
   padding: 20px;
 }
@@ -77,16 +101,17 @@ h1 {
   line-height: 1.5;
 }
 .movie-description {
- position: fixed;
- top: 50%;
- left: 50%;
- transform: translate(-50%, -50%);
- background-color: rgba(0, 0, 0, 0.8);
- color: white;
- padding: 20px;
- max-width: 500px;
- font-size: 16px;
- line-height: 1.5;
- border-radius: 5px;
- box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  display: table-row;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 20px;
+  max-width: 500px;
+  font-size: 16px;
+  line-height: 1.5;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
